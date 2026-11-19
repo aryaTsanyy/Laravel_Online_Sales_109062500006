@@ -7,7 +7,7 @@
     <meta name="description"
         content="Belanja kebutuhan sehari-hari dengan pilihan produk, stok yang jelas, dan pengiriman yang mudah.">
     <title>@yield('title', 'Katalog') · Ruang Belanja</title>
-    <link rel="stylesheet" href="{{ asset('store.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/store.css') }}">
 </head>
 
 <body>
