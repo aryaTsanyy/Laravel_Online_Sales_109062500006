@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +21,14 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 Route::get('/', fn() => 'Beranda toko (sementara)')->name('shop.index');
 
-Route::get('/admin', fn() => 'Dashboard admin (sementara)')
+Route::get('/admin', fn() => redirect()->route('admin.products.index'))
     ->middleware(['auth', 'role:admin'])
     ->name('admin.dashboard');
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::resource('products', AdminProductController::class)->except('show');
+});
