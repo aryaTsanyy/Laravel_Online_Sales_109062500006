@@ -10,6 +10,8 @@ use App\Http\Controllers\ProductCatalogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerOrderController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 
 Route::middleware('guest')->group(function () {
@@ -24,10 +26,14 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 Route::get('/', [ProductCatalogController::class, 'index'])->name('shop.index');
 Route::get('/produk/{product:slug}', [ProductCatalogController::class, 'show'])->name('shop.show');
 
-
-Route::get('/admin', fn() => redirect()->route('admin.products.index'))
-    ->middleware(['auth', 'role:admin'])
-    ->name('admin.dashboard');
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+    Route::patch('/orders/{order}/confirm', [AdminOrderController::class, 'confirm'])->name('orders.confirm');
+    Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.status');
+    Route::patch('/orders/{order}/cancel', [AdminOrderController::class, 'cancel'])->name('orders.cancel');
+});
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
