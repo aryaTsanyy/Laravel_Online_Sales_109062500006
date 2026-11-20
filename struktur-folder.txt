@@ -1,0 +1,100 @@
+app
+├── Http
+│   ├── Controllers
+│   │   ├── Admin
+│   │   │   ├── CategoryController.php
+│   │   │   ├── DashboardController.php
+│   │   │   ├── OrderController.php
+│   │   │   ├── ProductController.php
+│   │   │   ├── ShippingServiceController.php
+│   │   │   └── StockController.php
+│   │   ├── AuthController.php
+│   │   ├── CartController.php
+│   │   ├── CheckoutController.php
+│   │   ├── Controller.php
+│   │   ├── CustomerOrderController.php
+│   │   └── ProductCatalogController.php
+│   ├── Middleware
+│   │   └── RoleMiddleware.php
+│   └── Requests
+│       ├── CheckoutRequest.php
+│       ├── StoreProductRequest.php
+│       ├── StoreStockInRequest.php
+│       └── UpdateProductRequest.php
+├── Models
+│   ├── Category.php
+│   ├── Order.php
+│   ├── OrderItem.php
+│   ├── Product.php
+│   ├── ShippingService.php
+│   ├── StockMovement.php
+│   └── User.php
+└── Providers
+    └── AppServiceProvider.php
+database
+├── database.sqlite
+├── factories
+│   └── UserFactory.php
+├── migrations
+│   ├── 0001_01_01_000000_create_users_table.php
+│   ├── 0001_01_01_000001_create_cache_table.php
+│   ├── 0001_01_01_000002_create_jobs_table.php
+│   ├── 2026_01_01_000002_create_categories_table.php
+│   ├── 2026_01_01_000003_create_products_table.php
+│   ├── 2026_01_01_000004_create_shipping_services_table.php
+│   ├── 2026_01_01_000005_create_stock_movements_table.php
+│   ├── 2026_01_01_000006_create_orders_table.php
+│   ├── 2026_01_01_000007_create_order_items_table.php
+│   └── 2026_11_19_081105_add_role_to_users_table.php
+└── seeders
+    ├── AdminUserSeeder.php
+    ├── DatabaseSeeder.php
+    └── MasterDataSeeder.php
+resources
+├── css
+│   └── app.css
+├── js
+│   └── app.js
+└── views
+    ├── admin
+    │   ├── categories
+    │   │   └── index.blade.php
+    │   ├── dashboard.blade.php
+    │   ├── orders
+    │   │   ├── index.blade.php
+    │   │   └── show.blade.php
+    │   ├── products
+    │   │   ├── _form.blade.php
+    │   │   ├── create.blade.php
+    │   │   ├── edit.blade.php
+    │   │   └── index.blade.php
+    │   ├── shipping
+    │   │   └── index.blade.php
+    │   └── stock
+    │       ├── create.blade.php
+    │       └── index.blade.php
+    ├── auth
+    │   ├── login.blade.php
+    │   └── register.blade.php
+    ├── cart
+    │   └── index.blade.php
+    ├── checkout
+    │   └── index.blade.php
+    ├── layouts
+    │   ├── admin.blade.php
+    │   ├── app.blade.php
+    │   └── flash.blade.php
+    ├── orders
+    │   ├── index.blade.php
+    │   └── show.blade.php
+    ├── pagination
+    │   └── default.blade.php
+    ├── shop
+    │   ├── index.blade.php
+    │   └── show.blade.php
+    └── welcome.blade.php
+routes
+├── console.php
+└── web.php
+
+30 directories, 68 files
